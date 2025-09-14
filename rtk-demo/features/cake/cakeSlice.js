@@ -1,27 +1,18 @@
-const createSlice = require('@reduxjs/toolkit').createSlice
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
-    numOfCakes: 10
-}
+const initialState = { numOfCakes: 10 }
 
 const cakeSlice = createSlice({
-    name: 'cake',
-    initialState, //initialState: initialState same so can write just once
-
-    reducers: {
-        ordered : (state) => {
-            state.numOfCakes--
-        },
-        restocked : (state, action) => {
-            state.numOfCakes+= action.payload
-        },
-    },
+  name: 'cake',
+  initialState,
+  reducers: {
+    ordered: state => { state.numOfCakes-- },
+    restocked: (state, action) => { state.numOfCakes += action.payload }
+  }
 })
 
-module.exports = {
-  cakeReducer: cakeSlice.reducer,
-  cakeActions: cakeSlice.actions,
-}
+export const { ordered, restocked } = cakeSlice.actions
+export const cakeReducer = cakeSlice.reducer
 
-//we can directly mutate the state
-//we can explicitly return the new state
+// //we can directly mutate the state
+// //we can explicitly return the new state

@@ -1,20 +1,22 @@
-const store = require('./app/store')
-const { cakeActions } = require('./features/cake/cakeSlice')
-const { icecreamActions } = require('./features/icecream/icecreamSlice')
+import { fetchUsers } from './features/user/userSlice.js'
+import store from './app/store.js'
+import { ordered as cakeOrdered, restocked as cakeRestocked } from './features/cake/cakeSlice.js'
+import { ordered as icecreamOrdered, restocked as icecreamRestocked } from './features/icecream/icecreamSlice.js'
 
-console.log('initial state', store.getState());
+console.log('initial state', store.getState())
 
-const unsubscribe = store.subscribe(() => {
-    console.log('updated state', store.getState());    
+store.subscribe(() => {
+  console.log('updated state', store.getState())
 })
 
-store.dispatch(cakeActions.ordered())
-store.dispatch(cakeActions.ordered())
-store.dispatch(cakeActions.ordered())
-store.dispatch(cakeActions.restocked(3))
+store.dispatch(fetchUsers())
 
-store.dispatch(icecreamActions.ordered())
-store.dispatch(icecreamActions.ordered())
-store.dispatch(icecreamActions.ordered())
-store.dispatch(icecreamActions.restocked(5))
-unsubscribe()
+// store.dispatch(cakeOrdered())
+// store.dispatch(cakeOrdered())
+// store.dispatch(cakeOrdered())
+// store.dispatch(cakeRestocked(3))
+
+// store.dispatch(icecreamOrdered())
+// store.dispatch(icecreamOrdered())
+// store.dispatch(icecreamOrdered())
+// store.dispatch(icecreamRestocked(5))
